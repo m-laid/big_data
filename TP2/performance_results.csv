@@ -1,0 +1,7 @@
+File,Method,Execution Time (s),Memory Usage (MB)
+D:/CNPJ\Empresas.csv,Chunking,210.37372636795044,307.6796875
+D:/CNPJ\Empresas.csv,Dask,235.34263968467712,1472.64453125
+D:/CNPJ\Empresas.csv,Full File Comparison,51.5446515083313,3355.8359375
+D:/CNPJ\Socios.csv,Chunking,111.90929508209229,393.3515625
+D:/CNPJ\Socios.csv,Dask,104.1041042804718,1005.8125
+D:/CNPJ\Socios.csv,Full File Comparison,41.67495083808899,2696.75390625
