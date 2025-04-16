@@ -1,0 +1,61 @@
+
+1. Select the database:
+use info
+
+2. Insert documents into 'produits' collection:
+
+- Macbook Pro:
+db.produits.insert({
+  "nom": "Macbook Pro",
+  "fabriquant": "Apple",
+  "prix": 11435.99,
+  "options": ["Intel Core i5", "Retina Display", "Long life battery"]
+})
+
+- Macbook Air:
+db.produits.insert({
+  "nom": "Macbook Air",
+  "fabriquant": "Apple",
+  "prix": 125794.73,
+  "ultrabook": true,
+  "options": ["Intel Core i7", "SSD", "Long life battery"]
+})
+
+- Thinkpad X230:
+db.produits.insert({
+  "nom": "Thinkpad X230",
+  "fabriquant": "Lenovo",
+  "prix": 114358.74,
+  "ultrabook": true,
+  "options": ["Intel Core i5", "SSD", "Long life battery"]
+})
+
+3. Retrieve all products:
+db.produits.find().pretty()
+
+4. Retrieve the first product:
+db.produits.findOne()
+
+5. Find the "Thinkpad X230" and get its _id:
+db.produits.find({ nom: "Thinkpad X230" }).pretty()
+
+Then query it using the _id:
+db.produits.find({ _id: ObjectId("PUT_ID_HERE") }).pretty()
+
+6. Find products with price greater than 13723:
+db.produits.find({ prix: { $gt: 13723 } }).pretty()
+
+7. Find the first product where ultrabook is true:
+db.produits.findOne({ ultrabook: true })
+
+8. Find the first product with name containing "Macbook":
+db.produits.findOne({ nom: /Macbook/ })
+
+9. Find products whose name starts with "Macbook":
+db.produits.find({ nom: /^Macbook/ }).pretty()
+
+10. Delete products where fabriquant is "Apple":
+db.produits.remove({ fabriquant: "Apple" })
+
+11. Delete "Thinkpad X230" using its _id:
+db.produits.remove({ _id: ObjectId("PUT_ID_HERE") })
