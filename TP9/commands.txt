@@ -1,0 +1,128 @@
+
+
+
+
+ 1. Enter Hadoop Master Container
+
+
+docker exec -it hadoop-master bash
+
+
+ 2. Start Hadoop Services
+
+
+./start-hadoop.sh
+
+
+
+
+ 3. Prepare Sample Input File
+
+
+echo -e "Hello Spark Wordcount\nHello Hadoop Also :)" > file1.txt
+
+
+ 4. Create Input Directory in HDFS
+
+
+hdfs dfs -mkdir -p /input
+
+
+ 5. Upload the File to HDFS
+
+
+hdfs dfs -put -f file1.txt /input
+
+
+
+
+### 🔹 6. Clean Previous Output in HDFS (if exists)
+
+
+hdfs dfs -rm -r /output/wordcount
+
+
+
+
+ 7. Run Spark Job (Batch Mode)
+
+
+spark-submit \
+  --class spark.batch.tp21.App \
+  --master local \
+  /root/wordcount-spark-1.0-SNAPSHOT.jar \
+  /input/file1.txt \
+  /output/wordcount
+
+
+
+
+ 8. View WordCount Result in HDFS
+
+
+hdfs dfs -cat /output/wordcount/part-*
+
+part streaming ______________________________________________________________
+
+
+ 9. Start Netcat for Streaming Input
+
+
+nc -lk 9999
+
+
+
+
+ 10. Run Spark Job (Streaming Mode) in another console
+
+
+spark-submit \
+  --class spark.streaming.AppStreaming \
+  --master local \
+  /root/wordcount-streaming-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+
+
+ 11. Check Hadoop and Spark Services Status
+
+
+jps
+
+
+
+
+ 12. List Files in HDFS
+
+
+hdfs dfs -ls /
+
+
+
+ 13. View Contents of an HDFS File
+
+
+hdfs dfs -cat /input/file1.txt
+
+
+ 14. Create Local Directory for Streaming Input
+
+mkdir -p stream/input
+
+
+
+
+ 15. Compile Project After Code Changes
+
+
+mvn clean package
+
+
+
+
+ 16. Remove Old JAR Files 
+
+
+rm -rf /root/wordcount-*.jar
+
+
+
