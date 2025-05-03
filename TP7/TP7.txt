@@ -1,0 +1,68 @@
+
+
+
+------------------------------------------------------------
+1. Create a Kafka Topic (my-first-topic)
+Command:
+.in\windows\kafka-topics.bat --create --topic my-first-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+Result:
+Created topic my-first-topic.
+------------------------------------------------------------
+2. List All Kafka Topics
+Command:
+.in\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+Result:
+my-first-topic
+------------------------------------------------------------
+3. Start Console Producer (send messages to my-first-topic)
+Command:
+.in\windows\kafka-console-producer.bat --topic my-first-topic --bootstrap-server localhost:9092
+
+Messages Sent:
+>Hello Kafka
+This is my first message
+------------------------------------------------------------
+4. Start Console Consumer (read messages from my-first-topic)
+Command:
+.in\windows\kafka-console-consumer.bat --topic my-first-topic --from-beginning --bootstrap-server localhost:9092
+
+Messages Received:
+Hello Kafka
+This is my first message
+------------------------------------------------------------
+5. Create Another Kafka Topic (test-replicated)
+Command:
+.in\windows\kafka-topics.bat --create --topic test-replicated --bootstrap-server localhost:9092 --replication-factor 2 --partitions 1
+
+Result:
+Created topic test-replicated.
+------------------------------------------------------------
+6. Start Console Producer (send messages to test-replicated)
+Command:
+.in\windows\kafka-console-producer.bat --topic test-replicated --bootstrap-server localhost:9092
+
+Messages Sent:
+>hello world
+this is kafka cluster test
+------------------------------------------------------------
+7. Start Console Consumer (read messages from test-replicated)
+Command:
+.in\windows\kafka-console-consumer.bat --topic test-replicated --from-beginning --bootstrap-server localhost:9092
+
+Messages Received:
+hello world
+this is kafka cluster test
+------------------------------------------------------------
+8. Receiving Simulated IoT Data
+Command:
+.in\windows\kafka-console-consumer.bat --topic test-replicated --from-beginning --bootstrap-server localhost:9092
+
+Data Received:
+hello world
+this is kafka cluster test
+{"machine_id": "M1", "temperature": 71.53, "timestamp": "2025-04-24T10:39:23.197461"}
+{"machine_id": "M1", "temperature": 81.69, "timestamp": "2025-04-24T10:39:25.317232"}
+{"machine_id": "M1", "temperature": 65.82, "timestamp": "2025-04-24T10:39:27.318639"}
+------------------------------------------------------------
